@@ -3,7 +3,7 @@ from sqlalchemy import select
 from backend.models import Contact
 
 class ContactRepository:
-    def __int__ (self, db: AsyncSession):
+    def __init__(self, db: AsyncSession):
         self.db = db
     
     async def create_contact(self, name: str, email: str):
@@ -14,4 +14,5 @@ class ContactRepository:
         return new_contact
     
     async def get_all_contacts(self):
-        return await self.db.execute(select(Contact)).scalars.all()
+        result = await self.db.execute(select(Contact))
+        return result.scalars().all()

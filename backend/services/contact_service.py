@@ -9,5 +9,5 @@ class ContactService:
             raise ValueError("Invalid email.")
         return await self.contact_repo.create_contact(name=name, email=email)
     
-    async def list_contacts(self, user_id: int):
+    async def list_contacts(self):
         return await self.contact_repo.get_all_contacts()
